@@ -1,0 +1,17 @@
+\.pdf$
+\.Rproj.*
+\.Rhist.*
+R/abc\.R
+^.*\.Rproj$
+^\.Rproj\.user$
+README\.md
+README\.Rmd
+^playground$
+LICENSE
+\.git/
+source/
+.*\.sh
+^appveyor\.yml$
+^\.travis\.yml$
+^codecov\.yml$
+^cran-comments\.md$
