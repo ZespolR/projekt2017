@@ -5,20 +5,30 @@
 ##############################################################################
 
 ga <- function(type = c("binary", "real-valued", "permutation"), 
+               # type - okresla sposob reprezentacji zmiennych w zadaniu optymalizacji, możliwe wartosci to: binary w przypadku stosowania reprezentacji binarnej zmiennych, real-valued dla zadan, w ktorych warosci sa reprezentowane jako liczby zmiennoprzecinkowe, permutation dla zagadnien, w ktorych rozwiazanie jest przedstawiane w postaci listy
                fitness, ...,
+               # funkcja przystosowania musi miec wylacznie jeden argument reprezentujacy rozwiazanie zadania i zwracac wartosc numeryczna, okreslajaca miare dopasowania tego rozwiazania
                min, max, nBits,
+               # min - wektor o dlugosci rownej liczbie zmiennych stosowanych w zadaniu ktorego wartosci reprezentuja wartosci minimalne zmiennych w zadaniu
+               # max - wektor o dlugosci rownej liczbie zmiennych stosowanych w zadaniu ktorego wartosci reprezentuja wartosci maksymalne zmiennych w zadaniu
                population = gaControl(type)$population,
                selection = gaControl(type)$selection,
                crossover = gaControl(type)$crossover, 
                mutation = gaControl(type)$mutation,
                popSize = 50, 
+               # rozmiar populacji 
                pcrossover = 0.8, 
+               # prawdopodobienstwo krzyzowania 
                pmutation = 0.1, 
+               # prawdopodobienstwo mutacji
                elitism = base::max(1, round(popSize*0.05)), 
+               # liczba najlepszych osobnikow w selekcji elitarnej(wartosc domyslna 5 % populacji)
                updatePop = FALSE,
                postFitness = NULL,
                maxiter = 100,
+               # maksymalna liczba iteracji (pokolen) - kryterium zatrzymania (domyslnie 100)
                run = maxiter,
+               # maksymalna liczba mozliwych pokolen niedajacych poprawy wartosci funkcji przystosowania - kryterium zatrzymania (dom. maxiter)
                maxFitness = Inf,
                names = NULL,
                suggestions = NULL,
@@ -28,11 +38,13 @@ ga <- function(type = c("binary", "real-valued", "permutation"),
                                 pressel = 0.5,
                                 control = list(fnscale = -1, maxit = 100)),
                keepBest = FALSE,
+               # wartosc logiczna okreslajaca czy powinno byc zapamietaywane najlepsze rozwiazania w kazdym pokoleniu
                parallel = FALSE,
-               monitor = if(interactive()) 
+               monitor = if(interactive()) # monitor - funkcja uruchamiana w kazdym kroku algorytmu w celu monitorowania postepu obliczen, domyslnie wyswietlane sa wartosc srednia i najlepsza z danej populacji, argumentem tej funkcji jest obiekt typu ga
                            { if(is.RStudio()) gaMonitor else gaMonitor2 } 
                          else FALSE,
                seed = NULL) 
+# seed -  liczba naturalna okreslajaca tzw. ziarno dla generatora liczb pseudolosowych argument stosowany w celu uzyskiwania powtarzalnosci uzyskonych wynikow
 {
   call <- match.call()
   

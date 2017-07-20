@@ -1,5 +1,30 @@
 psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vmax=c(4,4), seed=10, anim=TRUE)
 {
+  #FUN - nazwa optymalizowanej funkcji, funkcja musi byc jednoargumentowa
+  #co oznacza ze argumentem jest wektor
+  
+  # n - liczba czastek w roju
+  
+  # max.loop - maksymalna liczba iteracji
+  
+  # w - wspolczynnik bezwladnosci
+  
+  # c1 - wspolczynnik wlasnego "zaufania" 
+  
+  # c2 - wspolczynnik "zaufania" do roju
+  
+  # xmin - wektor okreslajacy dolne ograniczenia wartosci zmiennych
+  
+  # xmax - wektor okreslajacy gorne ograniczenia wartosci zmiennych
+  
+  # vmax - wektor ograniczen predkosci w kazdym kierunku
+  
+  # seed - liczba naturalna okreslajaca tzw. ziarno dla generatora liczb
+  #pseudolosowych argument stosowany w celu uzyskania powtarzalnosci otrzymywanych wynikow
+  
+  # anim - wartosc logiczna, jesli prawda TRUE(wartosc domyslna), to animacja przebiegu
+  # optymalizajci jest wlaczona
+  
   g1 <- function(x,y)
   { 
     FUN(cbind(x,y))
