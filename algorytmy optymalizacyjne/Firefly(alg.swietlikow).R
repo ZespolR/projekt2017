@@ -4,7 +4,7 @@
 #Inputs: no_firefly (total number of fireflies), N_iteration (number of timesteps),alpha (Randomness),betmin (Minimum value of beta (the attractiveness parameter)),gamma(Absorption coefficient), rng (minumum and maximum value), Fun (desired function to optimize)
 
 
-firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA = Fun){
+firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA = ackley){
   #Check input parameters (otherwise set as default values)
   # the input parameter is assumed in sequence
   nargin <- nargs()

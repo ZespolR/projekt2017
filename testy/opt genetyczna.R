@@ -1,8 +1,6 @@
 library(GA)
-fp = function(x)
-{
-  (x^2 + 2*x)*cos(2*x)
-}
+fp = ackley
+
 curve(fp, from=-7, to=7)
 
 wyniki.ga = ga(type = "real-valued", fitness = fp, min = -7, max = 7)

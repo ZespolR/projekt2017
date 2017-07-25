@@ -1,9 +1,6 @@
 library(GA)
 
-fp = function(x1,x2)
-{
-  return((3*x1^2 + x2) * exp(-x1^2-x2^2))
-}
+fp = ackley
 
 x1 = seq(-2, 2, by = .05)
 x2 = seq(-2.2, 2.2, by = .05)
@@ -21,12 +18,18 @@ fm = function(obj)
   points(obj@population, pch=20)
 }
 
+start.time <- Sys.time()
+
 wyniki = ga(type = "real-valued",
             min = c(-2,-2.2), max = c(2,2.2),
             fitness = function(x) - f.opt(x[1], x[2]),
-            monitor = f.mon, popSize =20,
+            monitor = f.mon, popSize =50,
             pcrossover=0.85, pmutation=0.05,
-            elitism=5, maxiter = 60, seed = 10)
+            elitism=5, maxiter = 50, seed = 10)
+
+end.time <- Sys.time()
+time.taken <- end.time - start.time
+time.taken
 
 plot(wyniki.ga)
 summary(wyniki.ga)
