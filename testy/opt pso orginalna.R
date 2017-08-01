@@ -11,7 +11,7 @@ vmax <- c(4, 4)
 
 start.time <- Sys.time()#czas trzeba mierzyc z anim=FALSE
 
-psoptim(FUN=ackleypso, n=n, max.loop=m.l, w=w, c1=c1, c2=c2,
+psoptim(FUN=ackley.pso, n=n, max.loop=m.l, w=w, c1=c1, c2=c2,
         xmin=xmin, xmax=xmax, vmax=vmax, seed=5)
 
 endtime <- Sys.time()

@@ -1,4 +1,4 @@
-fun <- ackleyabc
+fun <- ackley.abc
 
 start.time <- Sys.time()
 

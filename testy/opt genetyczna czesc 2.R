@@ -8,7 +8,7 @@ filled.contour(x1, x2, f, color.palette = jet.colors)
 
 start.time <- Sys.time()
 
-GA <- ga(type = "real-valued", fitness = function(x) + ackleyga(x[1], x[2]),
+GA <- ga(type = "real-valued", fitness = function(x) + ackley.ga(x[1], x[2]),
          min = c(-32, -32), max = c(32, 32),
          popSize = 50, maxiter = 100)
 
