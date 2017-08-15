@@ -4,41 +4,8 @@
 #Inputs: no_firefly (total number of fireflies), N_iteration (number of timesteps),alpha (Randomness),betmin (Minimum value of beta (the attractiveness parameter)),gamma(Absorption coefficient), rng (minumum and maximum value), Fun (desired function to optimize)
 
 
-firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA = ackley){
-  #Check input parameters (otherwise set as default values)
-  # the input parameter is assumed in sequence
-  nargin <- nargs()
-  if (nargin < 1){
-    rng <-c(-1,1)
-    para <- c(20,50,0.25,0.20,1)
-  }
-  #Assume only one input parameter i.e. no_firefly is only passed to the function then rest of the parameter is initialized by the function
-  else if (nargin<2){
-    para <-c(no_firefly,50,0.25,0.20,1)
-    rng <-c(-1,1)
-  }
-  else if (nargin < 3){
-    para <-c(no_firefly,N_iteration,0.25,0.20,1)
-    rng <-c(-1,1)
-  }
-  else if (nargin < 4){
-    para <-c(no_firefly,N_iteration,alpha,0.20,1)
-    rng <-c(-1,1)
-  }
-  else if (nargin < 5){
-    para <-c(no_firefly,N_iteration,alpha, betamin,1)
-    rng <-c(-1,1)
-  }
-  else if (nargin < 6){
-    para <-c(no_firefly,N_iteration,alpha, betamin, gamma )
-    rng <-c(-1,1)
-  }
-  else {
-    rng<-c(rng[1],rng[2])
-    para <-c(no_firefly,N_iteration,alpha, betamin,gamma)
-  }
+firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA){
   
-  #Assign values to each variables
   no_firefly <- para[1]
   MaxGeneration <- para[2]
   alpha <- para[3]
@@ -146,10 +113,4 @@ firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA 
   
 }
 
-set.seed(1)
-#Function to optimize (User might want to change this ) 
-Fun <- function(x,y){
-  str1=exp(-(x-4)^2-(y-4)^2)+exp(-(x+4)^2-(y-4)^2)+2*exp(-x^2-(y+4)^2)+2*exp(-x^2-y^2)
-  return (str1)
-}
-firefly_algo()
+#set.seed(1)
