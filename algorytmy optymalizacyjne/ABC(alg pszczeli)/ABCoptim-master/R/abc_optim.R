@@ -98,9 +98,9 @@ abc_optim <- function(
   lb          = rep(-Inf, length(par)),        # Limite inferior de recorrido
   ub          = rep(+Inf, length(par)),        # Limite superior de recorrido
   limit       = 100,       # Limite con que se agota una fuente de alimento
-  maxCycle    = 1000,   # Numero maximo de iteraciones 
+  maxCycle    = 100,   # Numero maximo de iteraciones 
   optiinteger = FALSE, # TRUE si es que queremos optimizar en [0,1] (binario)
-  criter      = 50,
+  criter      = 10,
   parscale    = rep(1, length(par)),
   fnscale     = 1
 )
@@ -151,6 +151,7 @@ abc_optim <- function(
         
         # Replacing new group of parameters
         GlobalParams <<- Foods[i,]
+       
       }
     }
     
@@ -194,7 +195,6 @@ abc_optim <- function(
       solution <<- Foods[i,]
       
       f[i] <<- fun(solution)
-      
       fitness[i] <<- CalculateFitness(f[i])
       trial[i] <<- 0
     }
@@ -248,6 +248,7 @@ abc_optim <- function(
         # the solution i can not be improved, increase its trial counter*/
         trial[i] <<- trial[i]+1
       }
+      
     }
   }
   
@@ -351,20 +352,27 @@ abc_optim <- function(
   ans  <- matrix(0, ncol = D, nrow=maxCycle)
   iter <- 0
   # Comienza a iterar
+wykres=c()
   while ((iter <- iter + 1) < maxCycle)
   {
     SendEmployedBees()
     CalculateProbabilities()
-    SendOnlookerBees() 
+    SendOnlookerBees()
     MemorizeBestSource()
+   
     
     # Storing parameter and breaking out
     ans[iter,] <- GlobalParams
+    wykres[iter] = fun(ans[iter,])
+    #modyfikacja
+    
     if (persistance > criter) break
     
     SendScoutBees()
+    
   }
 
+plot(wykres, type="o", col="black", pch=19, cex=.7, xlab="Numer iteracji", ylab="Wartość funkcji")
   return(
     structure(list(
       Foods   = Foods,
@@ -486,5 +494,4 @@ abc_cpp <- function(
   fun <- function(par) fn(par/parscale, ...)/fnscale
   
   abc_cpp_(par, fun, lb, ub, FoodNumber, limit, maxCycle, criter)
-  
 }

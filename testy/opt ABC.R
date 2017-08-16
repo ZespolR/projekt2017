@@ -2,7 +2,7 @@ fun <- ackley.abc
 
 start.time <- Sys.time()
 
-ans0 <- abc_optim(rep(0,2), fun, lb=-32, ub=32, criter=50)
+ans0 <- abc_optim(rep(0,2), fun, lb=-32, ub=32, criter=10)
 ans0[c("par", "counts", "value")]
 
 end.time <- Sys.time()

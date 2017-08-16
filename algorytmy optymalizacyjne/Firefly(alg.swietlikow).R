@@ -97,20 +97,24 @@ firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA)
     ##Reordering of fireflies by their light intensity
     x1n<-x1n[idx] 
     x2n=x2n[idx]
-    
     # initial value of xo, yo and Lighto is changed here	
     x1o<-x1n
     x2o<-x2n
     Lighto<-Lightn
     # Move all fireflies to the better locations
+    plot(x1o,x2o,main="Pozycje œwietlików",type = "p",xlab="x1", ylab="x2",xlim=range(rng[1]:rng[2]),ylim=range(rng[1]:rng[2]))
+    
+    #points(x, xlim=c(rng[1], rng[2]), ylim=c(rng[1], rng[2]), pch=21, bg="cadetblue")
     tmp_move<- ffa_move(x1n,x2n,Lightn,x1o,x2o,Lighto,alpha,gamma,rng)
+    
     x1n <-tmp_move[[1]]
     x2n <- tmp_move[[2]]
   }
   # Output
   best <-cbind(x1n,x2n,Lightn)
+  plot(Lightn, type= "o",xlab="Iteracja", ylab="Wartoœæ minimum")
   return (best)	
   
 }
 
-#set.seed(1)
+set.seed(5)
