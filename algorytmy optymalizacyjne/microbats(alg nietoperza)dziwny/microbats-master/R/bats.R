@@ -81,6 +81,7 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
       Sol[i, j] <- Lb[j] + (Ub[j] - Lb[j]) * rnd
     }
     Fitness[i] <- FUN(D, Sol[i,])
+    #print(Sol[i,])
   }
 
   cat("Finding the best bat\n")
@@ -93,11 +94,19 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
     best[i] <- Sol[j, i]
   }
   f_min <- Fitness[j]
-
   cat("Moving the bats via random walk\n")
   S <- matrix(0, nrow = NP, ncol = D)
+  wynik=c()
+  
   for (t in 1:N_Gen) {
+    #tu przerobione!!!!
+    plot(Sol,main="Pozycje nietoperzy",type = "p",pch=19, col="darkred", xlab="x1", ylab="x2",xlim=range(Lower:Upper),ylim=range(Lower:Upper))
+    
+    wynik[t]=mean(Fitness)
+    
+    
     for (i in 1:NP) {
+      
       rnd <- runif(1, min = 0, max = 1)
       Q[i] <- Qmin + (Qmin - Qmax) * rnd
       for (j in 1:D) {
@@ -119,6 +128,7 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
           Sol[i, j] <- S[i, j]
         }
         Fitness[i] <- Fnew
+        
       }
       if (Fnew <= f_min) {
         for (j in 1:D) {
@@ -128,5 +138,8 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
       }
     }
   }
-  return(list(min_fitness = f_min, population_solutions = Sol, fitness = Fitness, best_solution = best))
+  plot(wynik,type = "o",pch=19, col="darkblue", xlab="Iteracje", ylab="Znalezione minimum funkcji")
+  
+  return(list(fitness = wynik, best_solution = best,min_fitness = f_min))
+  
 }

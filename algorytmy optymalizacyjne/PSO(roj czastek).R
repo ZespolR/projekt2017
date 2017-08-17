@@ -1,5 +1,8 @@
 psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vmax=c(4,4), seed=10, anim=TRUE)
 {
+  ptm <- proc.time()
+  czas.stracony =0
+  #czas trzeba mierzyc z anim=FALSE
   #FUN - nazwa optymalizowanej funkcji, funkcja musi byc jednoargumentowa
   #co oznacza ze argumentem jest wektor
   
@@ -55,9 +58,7 @@ psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vm
   }      
   
   
-  if (interactive() && anim && (d==2)) {
-    invisible(readline(prompt = "Press <Enter>/<Return> to continue..."))
-  }
+  
   
   v <- matrix(runif(n*d, min=-vmax, max=vmax), ncol=d, nrow=n)
   
@@ -102,24 +103,28 @@ psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vm
     }
     if((d==2) && anim)
     {
+      czas.rysunkow = proc.time()
       contour(x_image[,1], x_image[,2], z, nlevels=20, xlab="x1", ylab="x2", col="darkgray", main=paste(loop, "/", max.loop))
       points(x, xlim=c(xmin[1], xmax[1]), ylim=c(xmin[2], xmax[2]), pch=21, bg="cadetblue")
+      
+      czas.rysunkow2 = proc.time()-czas.rysunkow
+      czas.stracony=czas.stracony+czas.rysunkow2
       # points(x, xlim=c(xmin[1], xmax[1]), ylim=c(xmin[2], xmax[2]), pch=21, bg=densCols(x))
     }
     
     loop <- loop + 1
   }
-  if(anim)
-  {
-    if (interactive() & (d==2)) {
-      invisible(readline(prompt = "Press <Enter>/<Return> to continue..."))
-    }
-  }
+  
+  wynikczasu<<-proc.time() - ptm-czas.stracony
+  print(wynikczasu)
   
   plot(g.best, type="o", col="darkgreen", pch=19, cex=.7, ylim=c(min(g.mean),max(g.best)), xlab="Iteration", ylab="Fitness value")
   lines(g.mean, type="o", col="blue", cex=.7, pch=19)
   legend("bottomright", legend = c("Best", "Mean"), col = c("darkgreen", "blue"), pch = 19, lty = 1, merge = TRUE)
   colnames(x.best.roju) <- paste("x", seq(1:d), sep="")
   res <- list(sol = x.best.roju, val=g.best[loop-1])
+  
+  
+  
   return(res)
 }

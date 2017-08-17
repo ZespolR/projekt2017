@@ -5,6 +5,8 @@
 
 
 firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA){
+  ptm <- proc.time() #czas
+  czas.stracony =0
   
   no_firefly <- para[1]
   MaxGeneration <- para[2]
@@ -102,8 +104,12 @@ firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA)
     x2o<-x2n
     Lighto<-Lightn
     # Move all fireflies to the better locations
-    plot(x1o,x2o,main="Pozycje œwietlików",type = "p",xlab="x1", ylab="x2",xlim=range(rng[1]:rng[2]),ylim=range(rng[1]:rng[2]))
+    czas.rysunkow = proc.time()
     
+    plot(x1o,x2o,main="Pozycje œwietlików",type = "p",col="darkred",xlab="x1", ylab="x2",xlim=range(rng[1]:rng[2]),ylim=range(rng[1]:rng[2]))
+    
+    czas.rysunkow2 = proc.time()-czas.rysunkow
+    czas.stracony=czas.stracony+czas.rysunkow2
     #points(x, xlim=c(rng[1], rng[2]), ylim=c(rng[1], rng[2]), pch=21, bg="cadetblue")
     tmp_move<- ffa_move(x1n,x2n,Lightn,x1o,x2o,Lighto,alpha,gamma,rng)
     
@@ -111,8 +117,12 @@ firefly_algo <- function (no_firefly,N_iteration,alpha, betamin, gamma,rng,FunA)
     x2n <- tmp_move[[2]]
   }
   # Output
+  wynikczasu<<-proc.time() - ptm-czas.stracony
+  
   best <-cbind(x1n,x2n,Lightn)
-  plot(Lightn, type= "o",xlab="Iteracja", ylab="Wartoœæ minimum")
+  
+
+  plot(Lightn, type= "o",col="darkblue",xlab="Iteracje", ylab="Znalenione minimum")
   return (best)	
   
 }

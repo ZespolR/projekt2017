@@ -94,7 +94,7 @@ abc_optim <- function(
   par,               # Vector de parametros a opti 
   fn,                # Funcion objetivo
   ...,               # Argumentos de la funcion (M, x0, X, etc.)
-  FoodNumber  = 20,   # Fuentes de alimento 
+  FoodNumber  = 40,   # Fuentes de alimento 
   lb          = rep(-Inf, length(par)),        # Limite inferior de recorrido
   ub          = rep(+Inf, length(par)),        # Limite superior de recorrido
   limit       = 100,       # Limite con que se agota una fuente de alimento
@@ -105,6 +105,10 @@ abc_optim <- function(
   fnscale     = 1
 )
 {
+  ptm <- proc.time()
+  czas.stracony =0
+  
+  
   D <- length(par)
   
   # Checking limits
@@ -140,7 +144,6 @@ abc_optim <- function(
     else return(1 + abs(fun))
   }
   # CalculateFitness(f[1])
-  
   # The best food source is memorized
   MemorizeBestSource <- function() 
   {
@@ -151,7 +154,16 @@ abc_optim <- function(
         
         # Replacing new group of parameters
         GlobalParams <<- Foods[i,]
-       
+        czas.rysunkow = proc.time()
+        
+        plot(Foods,type = "p",col="darkred",xlab="x1", ylab="x2",xlim=range(lb[1]:ub[1]),ylim=range(lb[1]:ub[1]))
+        
+        czas.rysunkow2 = proc.time()-czas.rysunkow
+        czas.stracony=czas.stracony+czas.rysunkow2
+        
+        
+       #plot(wynik)
+       #print(wynik)
       }
     }
     
@@ -205,6 +217,7 @@ abc_optim <- function(
   
   SendEmployedBees <- function() {
     for (i in 1:FoodNumber) {
+      
       # The parameter to be changed is determined randomly
       param2change <- sample(1:D, 1) # floor(runif(1)*D) + 1 
       
@@ -359,7 +372,7 @@ wykres=c()
     CalculateProbabilities()
     SendOnlookerBees()
     MemorizeBestSource()
-   
+    
     
     # Storing parameter and breaking out
     ans[iter,] <- GlobalParams
@@ -371,6 +384,8 @@ wykres=c()
     SendScoutBees()
     
   }
+wynikczasu<<-proc.time() - ptm-czas.stracony
+
 
 plot(wykres, type="o", col="black", pch=19, cex=.7, xlab="Numer iteracji", ylab="Wartość funkcji")
   return(
