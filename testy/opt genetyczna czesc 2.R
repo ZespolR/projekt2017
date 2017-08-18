@@ -1,13 +1,21 @@
 library(GA)
 #zwykle liczenie:
 
+ptm <<- proc.time()
+czas.stracony <<-0
+
 GA <- ga(type = "real-valued",
          fitness = function(x) -ackley.ga(x[1], x[2]),
          min = c(-32, -32), max = c(32, 32),
-         popSize = 100, maxiter = 20, run = 100,
+         popSize = 50, maxiter = 20, run = 100,
          pmutation = ga_pmutation)
+
+wynikczasu<<-proc.time() - ptm-czas.stracony
+
 plot(GA)
 summary(GA)
+
+print(wynikczasu)
 ####################
 ## 
 ## zaawansowane liczenie z obrazkami 3d

@@ -192,10 +192,16 @@ ga <- function(type = c("binary", "real-valued", "permutation"),
   for(iter in seq_len(maxiter))
      {
       object@iter <- iter
-      
-       #TU było modyfikowaneee!!!!#######################################
+      #TU było modyfikowaneee!!!!#######################################
       ################################################################
-plot(Pop, type = "p",col="darkred",xlab="x1", ylab="x2",xlim=range(min[1]:max[1]),ylim=range(min[1]:max[1]))
+      czas.rysunkow <<- proc.time()
+      
+      plot(Pop, type = "p",col="darkred",xlab="x1", ylab="x2",xlim=range(min[1]:max[1]),ylim=range(min[1]:max[1]))
+
+      czas.rysunkow2 <<- proc.time()-czas.rysunkow
+      czas.stracony <<- czas.stracony + czas.rysunkow2
+       
+
 
       # evalute fitness function (when needed) 
       if(!parallel)

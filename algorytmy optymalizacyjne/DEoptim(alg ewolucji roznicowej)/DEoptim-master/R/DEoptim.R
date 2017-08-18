@@ -229,6 +229,7 @@ DEoptim <- function(fn, lower, upper, control = DEoptim.control(), ...,
                 "population in 5 tries. Evaluating population with duplicates.",
                 call.=FALSE, immediate.=TRUE)
       mappedPop
+      
     }
   }
 
