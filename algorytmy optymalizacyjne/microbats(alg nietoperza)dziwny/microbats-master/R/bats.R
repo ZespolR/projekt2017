@@ -60,8 +60,12 @@
 #'
 #' [2] Fister, I. Jr., Fister, I., Yang, X.-S., Fong, S., Zhuang, Y. "Bat algorithm: Recent advances." IEEE 15th International Symposium on Computational Intelligence and Informatics (CINTI), IEEE, 2014. 163-167.
 
-bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
+bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, anim,funkcje.nazwa, ...)
 {
+  wynikczasu=0
+  ptm <- proc.time()
+  czas.rysunkow=0
+  czas.stracony =0
   # initialize the parameters
   f_min <- 0
   Lb <- matrix(rep(Lower, D), nrow = 1)
@@ -72,7 +76,6 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
   Fitness <- matrix(rep(0, NP), nrow = 1)
   best <- matrix(rep(0, D), nrow = 1)
 
-  cat("Initializing the virtual microbats...\n")
   for (i in 1:NP) {
     Q[i] <- 0
     for (j in 1:D) {
@@ -84,7 +87,6 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
     #print(Sol[i,])
   }
 
-  cat("Finding the best bat\n")
   i = 1
   j = 1
   for (i in 1:NP) {
@@ -94,15 +96,28 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
     best[i] <- Sol[j, i]
   }
   f_min <- Fitness[j]
-  cat("Moving the bats via random walk\n")
   S <- matrix(0, nrow = NP, ncol = D)
   wynik=c()
   
+  starex=0
+  licznik=1
+  loop=0
+  
   for (t in 1:N_Gen) {
     #tu przerobione!!!!
-    plot(Sol,main="Pozycje nietoperzy",type = "p",pch=19, col="darkred", xlab="x1", ylab="x2",xlim=range(Lower:Upper),ylim=range(Lower:Upper))
+    if(anim==TRUE)
+    {
+      czas.rysunkow = proc.time()
+     # jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/bat_",funkcje.nazwa,"_po_optym/",t-1,".jpg",sep=""))
+    plot(Sol,main=t,type = "p",pch=19, col="darkred", cex = 2, xlab="x1", ylab="x2",xlim=range(Lower:Upper),ylim=range(Lower:Upper))
     
-    wynik[t]=mean(Fitness)
+   # dev.off()
+    
+    czas.rysunkow2 = proc.time()-czas.rysunkow
+    czas.stracony=czas.stracony+czas.rysunkow2
+    }
+    wynik[t]=f_min
+    
     
     
     for (i in 1:NP) {
@@ -135,11 +150,34 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, ...)
           best[j] <- S[i, j]
         }
         f_min <- Fnew
+        
       }
     }
+    
+    if(starex != f_min)
+    {
+      starex = f_min
+      licznik=1
+    }
+    else
+      licznik = licznik + 1
+    
+    if(licznik == 20) break
+    
+    loop <- loop + 1
+  }
+  wynikczasu<<- proc.time() - ptm-czas.stracony
+  
+  if(anim==TRUE)
+  {
+  #jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/bat_",funkcje.nazwa,"_po_optym/wykres.jpg",sep=""))
   }
   plot(wynik,type = "o",pch=19, col="darkblue", xlab="Iteracje", ylab="Znalezione minimum funkcji")
   
-  return(list(fitness = wynik, best_solution = best,min_fitness = f_min))
+  if(anim==TRUE)
+  {
+  #  dev.off()
+  }
+  return(list(fitness = wynik, best_solution = best,min_fitness = f_min,iter= loop))
   
 }

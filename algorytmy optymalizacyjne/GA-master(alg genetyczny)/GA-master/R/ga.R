@@ -32,7 +32,8 @@ ga <- function(type = c("binary", "real-valued", "permutation"),
                monitor = if(interactive()) 
                            { if(is.RStudio()) gaMonitor else gaMonitor2 } 
                          else FALSE,
-               seed = NULL) 
+               seed = NULL,
+               anim,funkcje.nazwa) 
 {
 
   call <- match.call()
@@ -194,12 +195,16 @@ ga <- function(type = c("binary", "real-valued", "permutation"),
       object@iter <- iter
       #TU było modyfikowaneee!!!!#######################################
       ################################################################
+      if(anim==TRUE)
+      {
       czas.rysunkow <<- proc.time()
+      jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/ga_",funkcje.nazwa,"_po_optym/",iter,".jpg",sep=""))
+      plot(Pop, type = "p",col="darkgreen",xlab="x1", ylab="x2",pch=19,cex=2,xlim=range(min[1]:max[1]),ylim=range(min[1]:max[1]))
       
-      plot(Pop, type = "p",col="darkred",xlab="x1", ylab="x2",xlim=range(min[1]:max[1]),ylim=range(min[1]:max[1]))
-
+      dev.off()
       czas.rysunkow2 <<- proc.time()-czas.rysunkow
       czas.stracony <<- czas.stracony + czas.rysunkow2
+      }
        
 
 
@@ -338,7 +343,7 @@ ga <- function(type = c("binary", "real-valued", "permutation"),
           object@population <- Pop
           object@fitness <- Fitness
         } 
-
+    
   }
   
   # if optim is required perform a local search from the best 
@@ -526,7 +531,7 @@ plot.ga <- function(x, y, ylim, cex.points = 0.7,
   }
   
   plot(iters, summary[,1], type = "n", ylim = ylim, 
-       xlab = "Generation", ylab = "Fitness value", ...)
+       xlab = "Pokolenia", ylab = "Znalezione wartosci minimum", ...)
   if(is.final & is.function(grid)) 
     { grid(equilogs=FALSE) }
   points(iters, summary[,1], type = ifelse(is.final, "o", "p"),
@@ -576,8 +581,6 @@ gaMonitor <- function(object, digits = getOption("digits"), ...)
   sumryStat <- c(mean(fitness), max(fitness))
   sumryStat <- format(sumryStat, digits = digits)
   replicate(2, clearConsoleLine()) 
-  cat(paste("\rGA | iter =", object@iter, "\n")) 
-  cat(paste("Mean =", sumryStat[1], "| Best =", sumryStat[2], "\n"))
   flush.console()
 }
 
@@ -585,10 +588,7 @@ gaMonitor <- function(object, digits = getOption("digits"), ...)
 gaMonitor2 <- function(object, digits = getOption("digits"), ...)
 { 
  fitness <- na.exclude(object@fitness)
- cat(paste("GA | Iter =", object@iter, 
-           " | Mean =", format(mean(fitness), digits = digits), 
-           " | Best =", format(max(fitness), digits = digits), 
-           "\n"))
+ 
  flush.console()
 }
 

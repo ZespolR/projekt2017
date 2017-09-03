@@ -7,8 +7,8 @@ czas.stracony <<-0
 GA <- ga(type = "real-valued",
          fitness = function(x) -ackley.ga(x[1], x[2]),
          min = c(-32, -32), max = c(32, 32),
-         popSize = 50, maxiter = 20, run = 100,
-         pmutation = ga_pmutation)
+         popSize = 200, maxiter = 100, run = 50,
+         pmutation = ga_pmutation, anim = FALSE, maxFitness = 0,funkcje.nazwa = "ackley.ga")
 
 wynikczasu<<-proc.time() - ptm-czas.stracony
 

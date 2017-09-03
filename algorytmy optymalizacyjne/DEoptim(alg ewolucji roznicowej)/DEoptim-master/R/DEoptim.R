@@ -112,6 +112,7 @@ DEoptim.control <- function(VTR = -Inf, strategy = 2, bs = FALSE, NP = NA,
 
 DEoptim <- function(fn, lower, upper, control = DEoptim.control(), ...,
                     fnMap=NULL) {
+  
   if (length(lower) != length(upper))
     stop("'lower' and 'upper' are not of same length")
   if (!is.vector(lower))
@@ -229,7 +230,7 @@ DEoptim <- function(fn, lower, upper, control = DEoptim.control(), ...,
                 "population in 5 tries. Evaluating population with duplicates.",
                 call.=FALSE, immediate.=TRUE)
       mappedPop
-      
+     
     }
   }
 

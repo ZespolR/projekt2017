@@ -1,25 +1,22 @@
-
+library(DEoptim)
 lower <- c(-32, -32)
 upper <- -lower
-set.seed(1234)
+set.seed(runif(1,min=0,max=1000))
 
+ptm <- proc.time() 
+czas.stracony =0
 
-start.time <- Sys.time()
-#czas
 outDEoptim <- DEoptim(ackley.de, lower, upper,
-                      DEoptim.control(itermax = 500,
-                                      storepopfrom = 1, storepopfreq = 2))
+                      DEoptim.control(itermax = 100,
+                                      storepopfrom = 1, storepopfreq = 2, NP=200,trace=FALSE))
 summary(outDEoptim)
 #czas
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
-## plot intermediate populations
-dev.new()
-plot(outDEoptim, type = 'p')
-## plot the best values
-dev.new()
-plot(outDEoptim, plot.type = "bestvalit", type = 'b', col = 'blue')
-dev.new()
-plot(outDEoptim, plot.type = "storepop")
+wynikczasu<- proc.time() - ptm
+print(wynikczasu)
 
+for(i in 1:99)
+{
+  plot(outDEoptim$member$storepop[[i]],main="Populacja DE",type = "p",pch=1,col="darkblue",cex=2,xlab="x1", ylab="x2",xlim=range(-32:32),ylim=range(-32:32))
+}
+
+plot(outDEoptim$member$bestvalit, type = 'o', col = 'black',xlab="Iteracje", ylab="Wartosc minimum")

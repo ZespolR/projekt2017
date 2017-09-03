@@ -1,14 +1,9 @@
 
-set.seed(5)  # for reproducive results
+set.seed(runif(1,min=0,max=1000))  # for reproducive results
 
-start.time <- Sys.time()
-fit <- bat_optim(D = 2, NP = 40, N_Gen = 100, A = 0.5, r = 0.5,
-                 Qmin = 0, Qmax = 2, Lower = -32, Upper = 32, FUN = ackley.bat)
-end.time <- Sys.time()
-time.taken <- end.time - start.time
-time.taken
+fit <- bat_optim(D = 2, NP = 200, N_Gen = 100, A = 0.5, r = 0.5,
+                 Qmin = 0, Qmax = 2, Lower = -32, Upper = 32, FUN = ackley.bat, anim=FALSE)
 
 fit
 x <- fit$best_solution
-time.taken <- end.time - start.time
-time.taken
+print(wynikczasu)
