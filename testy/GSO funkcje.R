@@ -44,7 +44,7 @@ gramacy_lee.gso = function(x,y) ## 1 wymiarowe [0.5,2.5]
   -((((sin(10*pi*x))/(2*x))+(x-1)^4))
 
 drop_wave.gso = function(x,y)# [-5.12,5.12] min -1 at (0,0)
-  -((-(1+cos(12*sqrt(x^2+y^2)))/(0.5*(x^2+y^2)+2)))
+  -(-(1+cos(12*sqrt(x^2+y^2)))/(0.5*(x^2+y^2)+2))
 
 mccormick.gso = function(x,y) # x1[-1.5,4] x2[-3,4] min -1.91 at (-0.54,-1.54)
   -(sin(x+y)+(x-y)^2-(1.5*x)+(2.5*y)+1)
