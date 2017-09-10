@@ -3,6 +3,7 @@
 #fit <- bat_optim(D = 2, NP = il.robali[j], N_Gen = 100, A = 0.5, r = 0.5,
            #      Qmin = 0, Qmax = 2, Lower = xmin, Upper = xmax, FUN = funkcja, anim=FALSE,set.seed(runif(1,min=0,max=1000)))}
 
+library(microbats)
 library(data.table)
 library(xlsx)
 
@@ -44,7 +45,7 @@ il.robali <- c(20,40,70,100,200)
 
 powt = 50
 
-for(k in 11:11) #dla wszystkich funkcji
+for(k in 1:13) #dla wszystkich funkcji
 {
   
   xmin <- -zakres[k]
@@ -85,7 +86,7 @@ for(k in 11:11) #dla wszystkich funkcji
       if(i==powt && j==5)
       {
         fit <- bat_optim(D = 2, NP = il.robali[j], N_Gen = 100, A = 0.5, r = 0.5,
-                         Qmin = 0, Qmax = 2, Lower = xmin, Upper = xmax, FUN = funkcje[[k]], anim=FALSE, funkcje.nazwa=funkcje.nazwa[k])
+                         Qmin = 0, Qmax = 2, Lower = xmin, Upper = xmax, FUN = funkcje[[k]], anim=TRUE, funkcje.nazwa=funkcje.nazwa[k])
       }
       
       else{

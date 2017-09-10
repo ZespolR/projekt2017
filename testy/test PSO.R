@@ -48,7 +48,7 @@ vmax <- c(4, 4)
 
 powt = 50
 
-for(k in 11:13) #dla wszystkich funkcji
+for(k in 1:13) #dla wszystkich funkcji
 {
   
 xmin <- c(-zakres[k], -zakres[k])

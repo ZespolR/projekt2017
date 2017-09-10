@@ -45,7 +45,7 @@ il.robali <- c(20,40,70,100,200)
 
 powt = 50
 
-for(k in 11:13) #dla wszystkich funkcji
+for(k in 1:13) #dla wszystkich funkcji
 {
   
   xmin <- -zakres[k]
@@ -95,7 +95,7 @@ for(k in 11:13) #dla wszystkich funkcji
                  pmutation = ga_pmutation, maxFitness = min[k],anim=TRUE,funkcje.nazwa=funkcje.nazwa[k])
         
         wynikczasu<<-proc.time() - ptm-czas.stracony
-        jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/ga_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
+        jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/ga_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
         
         plot(GA)
         

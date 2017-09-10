@@ -45,7 +45,7 @@ il.robali <- c(20,40,70,100,200)
 
 powt = 50
 
-for(k in 9:9) #dla wszystkich funkcji
+for(k in 1:13) #dla wszystkich funkcji
 {
   
   xmin <- -zakres[k]
@@ -97,18 +97,18 @@ for(k in 9:9) #dla wszystkich funkcji
         #czas
         wynikczasu<- proc.time() - ptm
         
-   #     for(z in 1:(outDEoptim$optim$iter - 1))
-    #  {
-        #  jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/de_",funkcje.nazwa[k],"_po_optym/",z,".jpg",sep=""))
+        for(z in 1:(outDEoptim$optim$iter - 1))
+      {
+         jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/de_",funkcje.nazwa[k],"_po_optym/",z,".jpg",sep=""))
           
-     #     plot(outDEoptim$member$storepop[[z]],main="Populacja DE",type = "p",pch=1,col="darkblue",cex=2,xlab="x1", ylab="x2",xlim=range(xmin:xmax),ylim=range(xmin:xmax))
-      #    dev.off()
-      #  }
-        #jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/de_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
+          plot(outDEoptim$member$storepop[[z]],main="Populacja DE",type = "p",pch=1,col="darkblue",cex=2,xlab="x1", ylab="x2",xlim=range(xmin:xmax),ylim=range(xmin:xmax))
+          dev.off()
+       }
+        jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/de_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
         
         plot(outDEoptim$member$bestvalit, type = 'o', col = 'black',xlab="Iteracje", ylab="Wartosci minimum")
         
-       # dev.off()
+       dev.off()
         
       }
       

@@ -108,10 +108,10 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, anim,fu
     if(anim==TRUE)
     {
       czas.rysunkow = proc.time()
-     # jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/bat_",funkcje.nazwa,"_po_optym/",t-1,".jpg",sep=""))
+      jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/bat_",funkcje.nazwa,"_po_optym/",t-1,".jpg",sep=""))
     plot(Sol,main=t,type = "p",pch=19, col="darkred", cex = 2, xlab="x1", ylab="x2",xlim=range(Lower:Upper),ylim=range(Lower:Upper))
     
-   # dev.off()
+    dev.off()
     
     czas.rysunkow2 = proc.time()-czas.rysunkow
     czas.stracony=czas.stracony+czas.rysunkow2
@@ -170,13 +170,13 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, anim,fu
   
   if(anim==TRUE)
   {
-  #jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/Magisterska/bat_",funkcje.nazwa,"_po_optym/wykres.jpg",sep=""))
+  jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/bat_",funkcje.nazwa,"_po_optym/wykres.jpg",sep=""))
   }
   plot(wynik,type = "o",pch=19, col="darkblue", xlab="Iteracje", ylab="Znalezione minimum funkcji")
   
   if(anim==TRUE)
   {
-  #  dev.off()
+    dev.off()
   }
   return(list(fitness = wynik, best_solution = best,min_fitness = f_min,iter= loop))
   
