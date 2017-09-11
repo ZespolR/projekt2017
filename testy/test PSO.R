@@ -125,8 +125,8 @@ tabela.srednich <- data.table(Nr_sredniej=c(1:5),Liczebnosc_roju=il.robali,Warto
 print(tabela.srednich)
 
 
-write.xlsx(tabele,paste("C:/users/Konasz/Desktop/projekt/wyniki_PSO/pso_",funkcje.nazwa[[k]],".xlsx"))
-write.xlsx(tabela.srednich,paste("C:/users/Konasz/Desktop/projekt/wyniki_PSO/srednie_pso_nowe_",funkcje.nazwa[[k]],".xlsx"))
+write.xlsx(tabele,paste("wyniki_PSO/",funkcje.nazwa[[k]],".xlsx"))
+write.xlsx(tabela.srednich,paste("wyniki_PSO/sr",funkcje.nazwa[[k]],".xlsx"))
 
 rm(x1,x2,minimum,czas,iter,tabele,blad.sk,x1.sr,x2.sr,minimum.sr,czas.sr,iter.sr,blad.sk.sr,odchylenie.sr)
 }

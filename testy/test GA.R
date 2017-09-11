@@ -158,8 +158,8 @@ for(k in 1:13) #dla wszystkich funkcji
   print(tabela.srednich)
   
   
-  write.xlsx(tabele,paste("C:/users/Konasz/Desktop/projekt/wyniki_GA/ga_",funkcje.nazwa[[k]],".xlsx"))
-  write.xlsx(tabela.srednich,paste("C:/users/Konasz/Desktop/projekt/wyniki_GA/srednie_ga_nowe_",funkcje.nazwa[[k]],".xlsx"))
+  write.xlsx(tabele,paste("wyniki_GA/",funkcje.nazwa[[k]],".xlsx"))
+  write.xlsx(tabela.srednich,paste("wyniki_GA/sr",funkcje.nazwa[[k]],".xlsx"))
   
   rm(x1,x2,minimum,czas,iter,tabele,blad.sk,x1.sr,x2.sr,minimum.sr,czas.sr,iter.sr,blad.sk.sr,odchylenie.sr)
 }

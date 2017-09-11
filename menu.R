@@ -1,7 +1,7 @@
-source('C:/Users/Konasz/Desktop/projekt/testy/BAT zrobione funkcje.R')
-source('C:/Users/Konasz/Desktop/projekt/testy/DE funkcje.R')
-source('C:/Users/Konasz/Desktop/projekt/testy/GA funkcje.R')
-source('C:/Users/Konasz/Desktop/projekt/testy/PSO funkcje.R')
+source('testy/BAT zrobione funkcje.R')
+source('testy/DE funkcje.R')
+source('testy/GA funkcje.R')
+source('testy/PSO funkcje.R')
 
 print("Wybierz algorytm do optymalizacji wprowadzajac odpowiednia cyfre")
 cat("\n")
@@ -13,21 +13,21 @@ print("4.PSO-alg.roju czastek")
 alg = readline(prompt="Wybor algorytmu: ")
 
 if (alg==1){
-  source('C:/Users/Konasz/Desktop/projekt/testy/test BAT.R')
+  source('testy/test BAT.R')
 } #BAT
 
 if(alg==2){
   
-  source('C:/Users/Konasz/Desktop/projekt/testy/test DE.R')
+  source('testy/test DE.R')
 } #DE
 
 if (alg==3){
   
-  source('C:/Users/Konasz/Desktop/projekt/testy/test GA.R')
+  source('testy/test GA.R')
 } #GA
 
 if (alg==4){
   
-  source('C:/Users/Konasz/Desktop/projekt/algorytmy optymalizacyjne/PSO(roj czastek).R')
-  source('C:/Users/Konasz/Desktop/projekt/testy/test PSO.R')
+  source('algorytmy optymalizacyjne/PSO(roj czastek).R')
+  source('testy/test PSO.R')
 } #PSO

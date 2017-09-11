@@ -97,7 +97,7 @@ for(k in 1:13) #dla wszystkich funkcji
         #czas
         wynikczasu<- proc.time() - ptm
         
-        for(z in 1:(outDEoptim$optim$iter - 1))
+        for(z in 2:(outDEoptim$optim$iter/5 - 5))
       {
          jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/de_",funkcje.nazwa[k],"_po_optym/",z,".jpg",sep=""))
           
@@ -164,8 +164,8 @@ for(k in 1:13) #dla wszystkich funkcji
   tabela.srednich <- data.table(Nr_sredniej=c(1:5),Liczebnosc_pop=il.robali,Wartosc_x1=x1.sr,Wartosc_x2=x2.sr, Znalezione_minimum=minimum.sr,MSE_minimum=blad.sk.sr,Odchylenie_standardowe=odchylenie.sr, Iteracje_do_wyniku=iter.sr, Czas_wykonania=czas.sr)
   print(tabela.srednich)
   
-  write.xlsx(tabele,paste("C:/users/Konasz/Desktop/projekt/wyniki_DE/DE_",funkcje.nazwa[[k]],".xlsx"))
-  write.xlsx(tabela.srednich,paste("C:/users/Konasz/Desktop/projekt/wyniki_DE/srednie_de_nowe_",funkcje.nazwa[[k]],".xlsx"))
+  write.xlsx(tabele,paste("wyniki_DE/",funkcje.nazwa[[k]],".xlsx"))
+  write.xlsx(tabela.srednich,paste("wyniki_DE/sr",funkcje.nazwa[[k]],".xlsx"))
   
   
   rm(x1,x2,minimum,czas,iter,tabele,blad.sk,x1.sr,x2.sr,minimum.sr,czas.sr,iter.sr,blad.sk.sr,odchylenie.sr)
