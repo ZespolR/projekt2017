@@ -43,9 +43,7 @@ min=c(0,0,3,1,0,-959,-400,0,-0.35,-1,0,0,-1)
 
 il.robali <- c(20,40,70,100,200)
 
-powt = 50
-
-for(k in 1:13) #dla wszystkich funkcji
+for(k in wybor:wybor) #dla wszystkich funkcji
 {
   
   xmin <- -zakres[k]

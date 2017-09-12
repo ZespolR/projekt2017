@@ -46,9 +46,7 @@ c1 <- 0.2
 c2 <- 0.2
 vmax <- c(4, 4)
 
-powt = 50
-
-for(k in 1:13) #dla wszystkich funkcji
+for(k in wybor:wybor) #dla wszystkich funkcji
 {
   
 xmin <- c(-zakres[k], -zakres[k])
