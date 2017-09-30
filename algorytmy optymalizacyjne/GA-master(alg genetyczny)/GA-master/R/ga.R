@@ -198,7 +198,7 @@ ga <- function(type = c("binary", "real-valued", "permutation"),
       if(anim==TRUE)
       {
       czas.rysunkow <<- proc.time()
-      jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/ga_",funkcje.nazwa,"_po_optym/",iter,".jpg",sep=""))
+      jpeg(paste("wykresy/ga_",funkcje.nazwa,"_po_optym/",iter,".jpg",sep=""))
       plot(Pop, type = "p",col="darkgreen",xlab="x1", ylab="x2",pch=19,cex=2,xlim=range(min[1]:max[1]),ylim=range(min[1]:max[1]))
       
       dev.off()

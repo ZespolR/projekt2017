@@ -83,6 +83,7 @@ for(k in wybor:wybor) #dla wszystkich funkcji
       set.seed=(runif(1,min=0,max=1000))
       if(i==powt && j==5)
       {
+        unlink(paste("wykresy/bat_",funkcje.nazwa[k],"_po_optym/*",sep=""))
         fit <- bat_optim(D = 2, NP = il.robali[j], N_Gen = 100, A = 0.5, r = 0.5,
                          Qmin = 0, Qmax = 2, Lower = xmin, Upper = xmax, FUN = funkcje[[k]], anim=TRUE, funkcje.nazwa=funkcje.nazwa[k])
       }

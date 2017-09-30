@@ -83,6 +83,7 @@ for(k in wybor:wybor) #dla wszystkich funkcji
       
       if(i==powt && j==5)
       {
+        unlink(paste("wykresy/ga_",funkcje.nazwa[k],"_po_optym/*",sep=""))
         ptm <<- proc.time()
         czas.stracony <<-0
         
@@ -93,7 +94,7 @@ for(k in wybor:wybor) #dla wszystkich funkcji
                  pmutation = ga_pmutation, maxFitness = min[k],anim=TRUE,funkcje.nazwa=funkcje.nazwa[k])
         
         wynikczasu<<-proc.time() - ptm-czas.stracony
-        jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/ga_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
+        jpeg(paste("wykresy/ga_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
         
         plot(GA)
         

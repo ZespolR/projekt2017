@@ -83,6 +83,8 @@ for(k in wybor:wybor) #dla wszystkich funkcji
       
       if(i==powt && j==5)
       {
+        unlink(paste("wykresy/de_",funkcje.nazwa[k],"_po_optym/*",sep=""))
+        
         lower <- c(xmin, xmin)
         upper <- -lower
         set.seed(runif(1,min=0,max=1000))
@@ -91,18 +93,18 @@ for(k in wybor:wybor) #dla wszystkich funkcji
         czas.stracony =0
         
         outDEoptim = DEoptim(fn=funkcje[[k]], lower, upper,
-                              DEoptim.control(itermax = 100,storepopfrom = 1, storepopfreq = 5, NP=il.robali[j],trace=FALSE))
+                              DEoptim.control(itermax = 100,storepopfrom = 0, storepopfreq = 5, NP=il.robali[j],trace=FALSE))
         #czas
         wynikczasu<- proc.time() - ptm
         
-        for(z in 2:(outDEoptim$optim$iter/5 - 5))
+        for(z in 1:(outDEoptim$optim$iter/5 - 5))
       {
-         jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/de_",funkcje.nazwa[k],"_po_optym/",z,".jpg",sep=""))
+         jpeg(paste("wykresy/de_",funkcje.nazwa[k],"_po_optym/",z,".jpg",sep=""))
           
           plot(outDEoptim$member$storepop[[z]],main="Populacja DE",type = "p",pch=1,col="darkblue",cex=2,xlab="x1", ylab="x2",xlim=range(xmin:xmax),ylim=range(xmin:xmax))
           dev.off()
        }
-        jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/de_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
+        jpeg(paste("wykresy/de_",funkcje.nazwa[k],"_po_optym/wykres.jpg",sep=""))
         
         plot(outDEoptim$member$bestvalit, type = 'o', col = 'black',xlab="Iteracje", ylab="Wartosci minimum")
         

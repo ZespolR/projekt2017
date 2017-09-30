@@ -1,6 +1,10 @@
 fcja=function(funkcja){
   psoptim(FUN<-funkcja, n=il.robali[j], max.loop=max.iteracji, w=w, c1=c1, c2=c2,
-        xmin=xmin, xmax=xmax, vmax=vmax, seed=runif(1,min=0,max=1000), anim=FALSE)}
+        xmin=xmin, xmax=xmax, vmax=vmax, seed=runif(1,min=0,max=1000), anim=FALSE,nazwa=funkcje.nazwa[[k]])}
+
+fcja2=function(funkcja){
+  psoptim(FUN<-funkcja, n=il.robali[j], max.loop=max.iteracji, w=w, c1=c1, c2=c2,
+          xmin=xmin, xmax=xmax, vmax=vmax, seed=runif(1,min=0,max=1000), anim=TRUE,nazwa=funkcje.nazwa[[k]])}
 
 library(data.table)
 library(xlsx)
@@ -83,7 +87,14 @@ for(j in 1:5) #rozne liczebnosci rojow
   
 for(i in 1:powt) #ilosc powtorzen tej samej funkcji tym samym algorytmem i ta sama liczebnoscia
 {
-  fcja(funkcje[[k]])
+  if(i == powt && j == 5)
+  {
+    unlink(paste("wykresy/pso_",funkcje.nazwa[k],"_po_optym/*",sep=""))
+    fcja2(funkcje[[k]])
+  }
+  
+  else
+    fcja(funkcje[[k]])
   
   x1[i] = res$sol[1]
   x2[i] = res$sol[2]

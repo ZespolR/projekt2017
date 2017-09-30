@@ -108,7 +108,7 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, anim,fu
     if(anim==TRUE)
     {
       czas.rysunkow = proc.time()
-      jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/bat_",funkcje.nazwa,"_po_optym/",t-1,".jpg",sep=""))
+      jpeg(paste("wykresy/bat_",funkcje.nazwa,"_po_optym/",t-1,".jpg",sep=""))
     plot(Sol,main=t,type = "p",pch=19, col="darkred", cex = 2, xlab="x1", ylab="x2",xlim=range(Lower:Upper),ylim=range(Lower:Upper))
     
     dev.off()
@@ -170,7 +170,7 @@ bat_optim <- function(D, NP, N_Gen, A, r, Qmin, Qmax, Lower, Upper, FUN, anim,fu
   
   if(anim==TRUE)
   {
-  jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/bat_",funkcje.nazwa,"_po_optym/wykres.jpg",sep=""))
+  jpeg(paste("wykresy/bat_",funkcje.nazwa,"_po_optym/wykres.jpg",sep=""))
   }
   plot(wynik,type = "o",pch=19, col="darkblue", xlab="Iteracje", ylab="Znalezione minimum funkcji")
   

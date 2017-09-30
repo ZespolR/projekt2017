@@ -1,4 +1,4 @@
-psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vmax=c(4,4), seed=10, anim=TRUE)
+psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vmax=c(4,4), seed=10, anim=TRUE,nazwa)
 {
   ptm <- proc.time()
   czas.stracony =0
@@ -52,7 +52,7 @@ psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vm
   {
     x_image <- matrix(c(seq(from=xmin[1],to=xmax[1],length.out=100),seq(from=xmin[2],to=xmax[2],length.out=100)), ncol=2)
     z <- outer(x_image[,1], x_image[,2], g1)
-   jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/pso_levin13_po_optym/0.jpg",sep=""))
+   jpeg(paste("wykresy/pso_",nazwa,"_po_optym/0.jpg",sep=""))
     image(x_image[,1], x_image[,2], z, xlab="x1", ylab="x2", main="Rój pocz¹tkowy")
     contour(x_image[,1], x_image[,2], z, nlevels=10, add=TRUE, col="grey50")
     points(x[,1], x[,2], pch=19, col="darkslateblue")
@@ -114,7 +114,7 @@ psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vm
     {
       czas.rysunkow = proc.time()
       
-      jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/pso_levin13_po_optym/",loop,".jpg",sep=""))
+      jpeg(paste("wykresy/pso_",nazwa,"_po_optym/",loop,".jpg",sep=""))
       contour(x_image[,1], x_image[,2], z, nlevels=20, xlab="x1", ylab="x2", col="darkgray", main=paste(loop))
       points(x, xlim=c(xmin[1], xmax[1]), ylim=c(xmin[2], xmax[2]), pch=21, bg="cadetblue")
       dev.off()
@@ -142,7 +142,7 @@ psoptim <- function(FUN, n=100, max.loop=100, w=.9, c1=.2, c2=.2, xmin, xmax, vm
   wynikczasu<<-proc.time() - ptm-czas.stracony
   #print(wynikczasu)
 
-  jpeg(paste("C:/Users/Konasz/Dysk Google/ETI/proj/pso_levin13_po_optym/wykres.jpg",sep=""))
+  jpeg(paste("wykresy/pso_",nazwa,"_po_optym/wykres.jpg",sep=""))
   plot(-g.best, type="o", col="darkgreen", pch=19, cex=.7, ylim=c(max(-g.mean),min(-g.best)), xlab="Iteracja", ylab="Wartoœæ funkcji")
   lines(-g.mean, type="o", col="blue", cex=.7, pch=19)
   legend("bottomright", legend = c("Best", "Mean"), col = c("darkgreen", "blue"), pch = 19, lty = 1, merge = TRUE)
