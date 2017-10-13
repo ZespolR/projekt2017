@@ -1,0 +1,7 @@
+﻿  Source.cpp
+  funkcje.cpp
+c:\users\konasz\dysk google\utp\programowanie\moje\pomiar predkosci algorytmow sortowania\cw8\funkcje.cpp(13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\konasz\dysk google\utp\programowanie\moje\pomiar predkosci algorytmow sortowania\cw8\funkcje.cpp(159): warning C4101: 'save2': unreferenced local variable
+  Generating Code...
+  cw8.vcxproj -> C:\Users\Konasz\Dysk Google\UTP\programowanie\moje\pomiar predkosci algorytmow sortowania\Debug\cw8.exe
+  cw8.vcxproj -> C:\Users\Konasz\Dysk Google\UTP\programowanie\moje\pomiar predkosci algorytmow sortowania\Debug\cw8.pdb (Partial PDB)

@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\konasz\dysk google\utp\programowanie\moje\cw 9\szybkosc\source.cpp(17): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  szybkosc.vcxproj -> C:\Users\Konasz\Dysk Google\UTP\programowanie\moje\cw 9\Debug\szybkosc.exe
+  szybkosc.vcxproj -> C:\Users\Konasz\Dysk Google\UTP\programowanie\moje\cw 9\Debug\szybkosc.pdb (Partial PDB)
