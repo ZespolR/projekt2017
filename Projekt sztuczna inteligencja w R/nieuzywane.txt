@@ -1,0 +1,25 @@
+\subsection{Narzêdzia programistyczne wykorzystane w programie}
+\subsubsection{Walidacja}
+\begin{lstlisting}[frame=tb]
+Walidacjê wprowadzonych wartoœci zastosowano przy wyborze algorytmu i~funkcji optymalizowanej. Poni¿ej podano przyk³ad funkcji sprawdzaj¹cej poprawnoœæ wyboru algorytmu:
+algorytmy <- function() #Poprawiony wybór algorytmu
+{
+  algor <- readline("Wybrany algorytm: ")
+  if(!grepl("^[0-9]+\$",algor))   		#walidacja danych wprowadzonych przez u¿ytkownika
+  {					#wyra¿enie regularne sprawdza czy wprowadzony cyfrê
+    cat("Niewlasciwy wybor")
+    return(algorytmy())
+  }
+\end{lstlisting}
+ 
+\subsubsection{Debugger}
+Z debuggera korzystano podczas pisania g³ównego programu do wielokrotnych testów poszczególnymi algorytmami, sprawdzano za jego pomoc¹ poprawnoœæ  dzia³ania kodu w~pêtlach. Na \ref{debug} rysunku przedstawiono proces sprawdzania krok po kroku dzia³ania pêtli, która zadan¹ iloœæ razy  wykonuje metodê SI.
+\begin{figure}[H]
+\centering
+ \includegraphics[width=17cm]{debug.png}
+ \caption{Debugger Rstudio w dzia³aniu} 
+ \label{debug}
+\end{figure}
+
+\subsubsection{Testy}
+Wielokrotne testy jednostkowe w~formie eksperymentu dla wszystkich algorytmów i~metod zosta³y przedstawione w~rozdziale 3.

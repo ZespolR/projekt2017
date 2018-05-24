@@ -1,0 +1,1 @@
+Program pobiera z tabeli ze strony internetowej wartoœci od¿ywcze wybranych produktów ¿ywnoœciowych i oblicza jaka jest wartoœæ od¿ywcza produktu w zale¿noœci od podanej masy. Informacje o tym umieszcza w bazie danych.

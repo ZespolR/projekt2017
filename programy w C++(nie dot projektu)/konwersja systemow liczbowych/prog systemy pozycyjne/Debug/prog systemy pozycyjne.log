@@ -1,4 +1,0 @@
-﻿  Source.cpp
-c:\users\konasz\documents\visual studio 2015\projects\prog systemy pozycyjne\prog systemy pozycyjne\source.cpp(54): warning C4244: '=': conversion from 'double' to 'unsigned short', possible loss of data
-  prog systemy pozycyjne.vcxproj -> C:\Users\Konasz\Documents\Visual Studio 2015\Projects\prog systemy pozycyjne\Debug\prog systemy pozycyjne.exe
-  prog systemy pozycyjne.vcxproj -> C:\Users\Konasz\Documents\Visual Studio 2015\Projects\prog systemy pozycyjne\Debug\prog systemy pozycyjne.pdb (Partial PDB)
