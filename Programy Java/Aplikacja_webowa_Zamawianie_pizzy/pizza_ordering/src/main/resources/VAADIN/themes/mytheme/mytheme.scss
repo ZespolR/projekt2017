@@ -1,0 +1,67 @@
+@import "../valo/valo.scss";
+
+@mixin mytheme {
+    @include valo;
+
+    .title {
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 70px;
+        color: #FFFFFF;
+    }
+    
+    .body{
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 20px;
+        color: #FFFFFF;
+        background-color: #FF0000;
+    }
+    
+    .pizza_label {
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 40px;
+        color: #FFFFFF;
+        
+    }
+    
+    .pizza_desc {
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 22px;
+        color: #FFFFFF;
+    }
+    
+    .cena{
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 26px;
+        color: #FFFFFF;
+    }
+    
+    .cena_laczna{
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 40px;
+        color: #FFFFFF;
+    }
+    
+    .zamowienie_pizzy{
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 26px;
+        color: #FFFFFF;
+    }
+    
+    .konsola{
+        font-family: calibri;
+        font-size: 20px;
+        color: #000000;
+    }
+    
+    .console_title {
+        font-family: calibri;
+        font-size: 40px;
+    }
+}

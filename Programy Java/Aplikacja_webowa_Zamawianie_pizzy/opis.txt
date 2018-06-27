@@ -1,0 +1,1 @@
+Aplikacja pozwala na zamówienie wybranych pizz. Po podaniu danych kupuj¹cego zamówienie jest zapisywane w bazie danych. Lista pizze mog¹ byæ dodawane z modu³u administracyjnego, z którego te¿ mo¿na wyszukiwaæ zamówienia wg wybranych kryteriów.

@@ -1,0 +1,6 @@
+@import "mytheme.scss";
+//@import "addons.scss";
+.mytheme {
+  @include mytheme;
+  //@include addons;
+}

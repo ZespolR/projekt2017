@@ -1,5 +1,6 @@
 package napi_projekt_srt;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,26 +14,23 @@ import java.util.stream.Stream;
 public class Napi_projekt_srt {
 
     // Zmienne do modyfikacji //
-    
     //Sciezka pliku wejsciowego do modyfikacji//
-    static String wejscie = "D:\\napisy0.srt";
-    
-    //Sciezka pliku wyjsciowego
-    static String wyjscie = "D:\\napisy1.srt";
-    
-    /////////////////
-    
-    // liczba sekund przyspieszających napisy lub zwalniających ich pojawianie sie +/- :
-    static int sek = -12;
-    
-    // liczba tysiecznych sekundy :
-    static int ms = -900;
-    
-    // poprawka zmienia predkosc pojawiania sie kolejnych napisow o podaną wartość tysiecznych sekundy co napis (usuwa niezgodnosci szybkosci wyświetlania napisow pojawiajace sie w trakcie filmu):
-    static short poprawka = -4;
-    
-    //////////////////
+    static String wejscie = Okno.nazwa.replace("\\", "\\\\");
 
+    //Sciezka pliku wyjsciowego
+    static String wyjscie = Okno.nazwa.replace("\\", "\\\\");
+
+    /////////////////
+    // liczba sekund przyspieszających napisy lub zwalniających ich pojawianie sie +/- :
+    static int sek = Okno.sekund;
+
+    // liczba tysiecznych sekundy :
+    static int ms = Okno.set;
+
+    // poprawka zmienia predkosc pojawiania sie kolejnych napisow o podaną wartość tysiecznych sekundy co napis (usuwa niezgodnosci szybkosci wyświetlania napisow pojawiajace sie w trakcie filmu):
+    static int poprawka = Okno.kom;
+
+    //////////////////
     static int[] laczenie_cyfr(int[] czas) {
         //godziny
         czas[9] = czas[0] * 10 + czas[1];
@@ -87,7 +85,7 @@ public class Napi_projekt_srt {
         return czas;
     }
 
-    public static void main(String[] args) {
+    public static void starting() {
 
         int[] czas = new int[15];
 
@@ -99,6 +97,9 @@ public class Napi_projekt_srt {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        File file = new File(wejscie);
+        file.delete();
 
         linijki.forEach(element -> {
 
@@ -184,7 +185,7 @@ public class Napi_projekt_srt {
             }
 
         });
-        System.out.println("Zrobione!");
+        //System.out.println("Zrobione!");
     }
 
 }

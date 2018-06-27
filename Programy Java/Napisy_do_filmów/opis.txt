@@ -1,0 +1,1 @@
+Zdarza siê, ¿e pobrane automatycznie z internetu napisy do filmów nie s¹ w³aœciwie zsynchronizowane z dialogami. Program pozwala przyspieszyæ lub spowolniæ wyœwietlanie napisów (.srt) w trakcie filmu.
